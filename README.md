@@ -65,7 +65,7 @@ The prediction model is trained using the following categories of features:
 ### 1️. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/crop-yield-prediction.git
+git clone https://github.com/22b01a12c4/crop-yield-prediction.git
 cd crop-yield-prediction
 ```
 
