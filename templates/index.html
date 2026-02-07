@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Yield Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f6ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 40px; /* space between the two columns */
+            row-gap: 20px;
+        }
+
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #34495e;
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #2980b9;
+            outline: none;
+            box-shadow: 0 0 5px rgba(41, 128, 185, 0.3);
+        }
+
+        .submit-btn {
+            grid-column: span 2;
+            padding: 12px;
+            background-color: #2980b9;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1f5d91;
+        }
+
+        .prediction {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #27ae60;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #eafaf1;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crop Yield Prediction</h1>
+        <form method="POST">
+            {% for feat in features %}
+                <div >
+                    <label>
+    {{ feat }}
+    {% if feature_full_forms.get(feat) %}
+        ({{ feature_full_forms[feat] }})
+    {% endif %}
+</label>
+
+                    <input type="text" name="{{ feat }}" placeholder="Enter {{ feat }}" required>
+                </div>
+            {% endfor %}
+            <button type="submit" class="submit-btn">Predict Yield</button>
+        </form>
+
+        {% if prediction is not none %}
+            <div class="prediction">
+                Predicted Yield: {{ prediction }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
